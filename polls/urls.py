@@ -15,7 +15,7 @@ from . import views
 
 app_name = 'polls'
 # nb we are using generic view for index, detail, results. They (were) very short
-# views and can be managed easily using the generiv view system
+# views and can be managed easily using the generic view system. this is why we ad the .as_view()
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     path('<int:pk>/', views.DetailView.as_view(), name='detail'),

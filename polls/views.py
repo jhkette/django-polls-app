@@ -12,7 +12,8 @@ from django.views import generic
 
 from .models import Choice, Question
 
-
+# https://docs.djangoproject.com/en/3.0/topics/class-based-views/generic-display/
+# See link above for generic views
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
@@ -47,6 +48,11 @@ class ResultsView(generic.DetailView):
 # template.
 
 def vote(request, question_id):
+    # https://docs.djangoproject.com/en/3.0/topics/http/shortcuts/#django.shortcuts.get_object_or_404
+    # Calls get() on a given model manager, but it raises 
+    # Http404 instead of the model’s DoesNotExist exception.
+    
+    # here we add the Question model and the question_id (this is a parameter in a url)
     question = get_object_or_404(Question, pk=question_id)
     try:
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
